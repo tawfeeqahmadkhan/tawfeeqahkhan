@@ -1,330 +1,525 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tawfeeq Ahmad Khan | Full Stack Developer</title>
-    <meta name="description" content="Portfolio of Tawfeeq Ahmad Khan - Full Stack Developer specializing in React, Node.js, and AWS.">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tawfeeq Ahmad Khan — Full Stack Developer & Tech Lead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#06080f;
+  --surface:#0d1117;
+  --card:#0f1623;
+  --card2:#111827;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.12);
+  --cyan:#00d4ff;
+  --cyan2:#00aacc;
+  --purple:#7c6af5;
+  --green:#00e5a0;
+  --white:#f0f4ff;
+  --muted:#5a6a85;
+  --muted2:#8899aa;
+  --text:#c8d8f0;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.65;overflow-x:hidden}
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#6366f1', // Indigo 500
-                        secondary: '#ec4899', // Pink 500
-                        dark: '#0f172a', // Slate 900
-                        darker: '#020617', // Slate 950
-                        card: 'rgba(30, 41, 59, 0.7)', // Slate 800 with opacity
-                    }
-                }
-            }
-        }
-    </script>
+/* ── NOISE OVERLAY ── */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:.4;pointer-events:none;z-index:0}
 
-    <style>
-        /* Custom Styles for Glassmorphism & Animations */
-        body {
-            background-color: #020617;
-            color: #e2e8f0;
-            overflow-x: hidden;
-        }
-        
-        .blob {
-            position: absolute;
-            filter: blur(80px);
-            opacity: 0.4;
-            z-index: -1;
-            animation: move 10s infinite alternate;
-        }
-        
-        @keyframes move {
-            from { transform: translate(0, 0) scale(1); }
-            to { transform: translate(20px, -20px) scale(1.1); }
-        }
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:16px 6%;backdrop-filter:blur(20px);background:rgba(6,8,15,0.75);border-bottom:1px solid var(--border)}
+.logo{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--cyan);letter-spacing:.06em;text-decoration:none}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:12px;font-weight:500;color:var(--muted2);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--cyan)}
+.nav-cta{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--bg);background:var(--cyan);padding:8px 20px;border-radius:6px;text-decoration:none;transition:all .2s}
+.nav-cta:hover{background:#33ddff;transform:translateY(-1px)}
 
-        .glass-card {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+/* ── HERO ── */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 6% 80px;overflow:hidden}
+.hero-glow{position:absolute;top:-20%;left:-10%;width:70%;height:70%;background:radial-gradient(ellipse at 30% 40%, rgba(0,212,255,.12) 0%, transparent 60%);pointer-events:none}
+.hero-glow2{position:absolute;bottom:-10%;right:-5%;width:50%;height:60%;background:radial-gradient(ellipse at 70% 60%, rgba(124,106,245,.1) 0%, transparent 60%);pointer-events:none}
+.grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at 50% 50%, black 0%, transparent 80%);pointer-events:none}
+.hero-content{position:relative;z-index:2;max-width:760px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:100px;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:.08em;margin-bottom:28px}
+.pulse-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(48px,8vw,96px);font-weight:700;line-height:.95;letter-spacing:-.04em;color:var(--white);margin-bottom:20px}
+h1 .line2{display:block;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:clamp(16px,2vw,20px);color:var(--muted2);margin-bottom:16px;font-weight:300}
+#typed-wrap{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--cyan);margin-bottom:32px;display:flex;align-items:center;gap:8px}
+#typed-wrap::before{content:'>';color:var(--purple)}
+.cursor2{display:inline-block;width:8px;height:14px;background:var(--cyan);animation:blink2 1s step-end infinite;border-radius:1px}
+@keyframes blink2{0%,100%{opacity:1}50%{opacity:0}}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-glow{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:8px;font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:600;text-decoration:none;transition:all .25s;cursor:pointer;border:none}
+.btn-glow.primary{background:linear-gradient(135deg,var(--cyan),var(--cyan2));color:var(--bg);box-shadow:0 0 40px rgba(0,212,255,.25)}
+.btn-glow.primary:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(0,212,255,.4)}
+.btn-glow.ghost{background:transparent;color:var(--white);border:1px solid var(--border2)}
+.btn-glow.ghost:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,212,255,.05)}
+.hero-stats{display:flex;gap:40px;margin-top:56px;padding-top:40px;border-top:1px solid var(--border)}
+.stat-val{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:700;color:var(--white);line-height:1}
+.stat-label{font-size:12px;color:var(--muted);margin-top:4px;letter-spacing:.04em}
+.stat-accent{color:var(--cyan)}
 
-        .glass-nav {
-            background: rgba(2, 6, 23, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
+/* ── SCROLL MARQUEE ── */
+.marquee-wrap{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(13,17,23,.6);padding:14px 0;overflow:hidden;position:relative;z-index:1}
+.marquee-track{display:flex;gap:0;animation:scroll 25s linear infinite;width:max-content}
+.marquee-track:hover{animation-play-state:paused}
+.marquee-item{display:inline-flex;align-items:center;gap:10px;padding:0 24px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:.06em;white-space:nowrap}
+.marquee-item span{color:var(--cyan)}
+.marquee-dot{width:3px;height:3px;border-radius:50%;background:var(--muted)}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-        .gradient-text {
-            background: linear-gradient(to right, #6366f1, #ec4899, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .timeline-line::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: linear-gradient(to bottom, #6366f1, #ec4899);
-        }
-    </style>
+/* ── SECTION ── */
+.section{padding:100px 6%;max-width:1200px;margin:0 auto}
+.section-tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--cyan);text-transform:uppercase;margin-bottom:8px}
+.section-h{font-family:'Space Grotesk',sans-serif;font-size:clamp(30px,4vw,48px);font-weight:700;letter-spacing:-.03em;color:var(--white);margin-bottom:56px}
+.section-h em{font-style:normal;color:var(--cyan)}
+
+/* ── BENTO SKILLS ── */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+.bento-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;position:relative;overflow:hidden;transition:border-color .25s,transform .25s}
+.bento-card:hover{border-color:rgba(0,212,255,.3);transform:translateY(-2px)}
+.bento-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,255,.03) 0%,transparent 60%);pointer-events:none}
+.bc-1{grid-column:span 5}
+.bc-2{grid-column:span 4}
+.bc-3{grid-column:span 3}
+.bc-4{grid-column:span 6}
+.bc-5{grid-column:span 6}
+.bc-6{grid-column:span 12;display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:20px 28px}
+.bcat{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--cyan);text-transform:uppercase;margin-bottom:18px}
+.btags{display:flex;flex-wrap:wrap;gap:7px}
+.btag{font-size:12px;font-weight:500;padding:5px 12px;border-radius:6px;background:rgba(255,255,255,.04);color:var(--text);border:1px solid var(--border2);transition:all .2s}
+.btag:hover{background:rgba(0,212,255,.08);border-color:rgba(0,212,255,.3);color:var(--cyan)}
+.btag.hot{background:rgba(0,212,255,.08);border-color:rgba(0,212,255,.25);color:var(--cyan)}
+.bc-icon{font-size:28px;margin-bottom:14px;display:block}
+.ai-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;background:rgba(124,106,245,.1);border:1px solid rgba(124,106,245,.25);font-size:12px;font-weight:500;color:#a89cf5}
+
+/* ── EXPERIENCE ── */
+.exp-timeline{position:relative;padding-left:28px}
+.exp-timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--cyan),var(--purple),transparent)}
+.exp-entry{position:relative;margin-bottom:60px}
+.exp-entry:last-child{margin-bottom:0}
+.exp-dot{position:absolute;left:-34px;top:6px;width:12px;height:12px;border-radius:50%;border:2px solid var(--cyan);background:var(--bg);box-shadow:0 0 12px rgba(0,212,255,.4)}
+.exp-dot.purple{border-color:var(--purple);box-shadow:0 0 12px rgba(124,106,245,.4)}
+.exp-dot.green{border-color:var(--green);box-shadow:0 0 12px rgba(0,229,160,.4)}
+.exp-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;transition:border-color .25s}
+.exp-card:hover{border-color:var(--border2)}
+.exp-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;gap:16px;flex-wrap:wrap}
+.exp-role{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--white)}
+.exp-period-badge{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);background:rgba(255,255,255,.04);padding:4px 10px;border-radius:5px;border:1px solid var(--border);white-space:nowrap}
+.exp-co{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;margin-bottom:4px}
+.exp-co.c{color:var(--cyan)}
+.exp-co.p{color:var(--purple)}
+.exp-co.g{color:var(--green)}
+.exp-loc{font-size:12px;color:var(--muted);margin-bottom:20px;font-family:'JetBrains Mono',monospace}
+.exp-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.exp-list li{font-size:14px;color:var(--muted2);padding-left:20px;position:relative;line-height:1.65}
+.exp-list li::before{content:'▸';position:absolute;left:0;color:var(--cyan);font-size:11px;top:2px}
+.exp-links2{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+.elink{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);text-decoration:none;padding:4px 10px;border:1px solid rgba(0,212,255,.2);border-radius:5px;background:rgba(0,212,255,.04);transition:all .2s}
+.elink:hover{background:rgba(0,212,255,.12);border-color:rgba(0,212,255,.5)}
+.rag-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:rgba(0,229,160,.08);border:1px solid rgba(0,229,160,.2);border-radius:5px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);letter-spacing:.06em;margin-top:12px}
+
+/* ── PROJECT ── */
+.project-hero{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:48px;position:relative;overflow:hidden}
+.project-hero::after{content:'';position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle, rgba(124,106,245,.15) 0%, transparent 70%);pointer-events:none}
+.project-hero::before{content:'';position:absolute;bottom:-40px;left:-40px;width:200px;height:200px;background:radial-gradient(circle, rgba(0,212,255,.1) 0%, transparent 70%);pointer-events:none}
+.proj-label{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--purple);background:rgba(124,106,245,.1);border:1px solid rgba(124,106,245,.2);padding:6px 14px;border-radius:6px;margin-bottom:20px;text-transform:uppercase}
+.proj-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,4vw,40px);font-weight:700;color:var(--white);margin-bottom:16px;letter-spacing:-.02em}
+.proj-desc{color:var(--muted2);max-width:680px;line-height:1.8;margin-bottom:28px;font-size:15px}
+.proj-stack{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+.pstack-tag{font-family:'JetBrains Mono',monospace;font-size:11px;padding:5px 12px;border-radius:6px;background:rgba(0,212,255,.06);color:var(--cyan);border:1px solid rgba(0,212,255,.15)}
+.proj-feat{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;padding-top:32px;border-top:1px solid var(--border)}
+.pf{background:rgba(255,255,255,.02);border-radius:10px;padding:18px}
+.pf-num{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:var(--cyan)}
+.pf-label{font-size:12px;color:var(--muted);margin-top:4px}
+
+/* ── CONTACT ── */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.contact-h{font-family:'Space Grotesk',sans-serif;font-size:clamp(32px,5vw,56px);font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--white);margin-bottom:20px}
+.contact-h span{display:block;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.contact-note{color:var(--muted2);line-height:1.75;margin-bottom:28px}
+.avail-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:8px;background:rgba(0,229,160,.08);border:1px solid rgba(0,229,160,.2);font-size:13px;font-weight:500;color:var(--green)}
+.avail-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s ease infinite}
+.contact-cards{display:flex;flex-direction:column;gap:10px}
+.ccard{display:flex;align-items:center;gap:16px;padding:18px 22px;background:var(--card);border:1px solid var(--border);border-radius:14px;text-decoration:none;transition:all .25s}
+.ccard:hover{border-color:rgba(0,212,255,.3);transform:translateX(6px);background:rgba(0,212,255,.03)}
+.ccard-icon{width:42px;height:42px;border-radius:10px;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.15);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;color:var(--cyan)}
+.ccard-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.ccard-val{font-size:14px;color:var(--white);font-weight:500}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:28px 6%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.foot-left{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted)}
+.foot-right{display:flex;gap:20px}
+.foot-right a{font-size:12px;color:var(--muted);text-decoration:none;transition:color .2s}
+.foot-right a:hover{color:var(--cyan)}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-d1{transition-delay:.1s}
+.reveal-d2{transition-delay:.2s}
+.reveal-d3{transition-delay:.3s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .bc-1,.bc-2,.bc-3{grid-column:span 6}
+  .bc-4,.bc-5{grid-column:span 12}
+  .contact-wrap{grid-template-columns:1fr}
+  .proj-feat{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .bc-1,.bc-2,.bc-3,.bc-4,.bc-5{grid-column:span 12}
+  .nav-links,.nav-cta{display:none}
+  .hero-stats{gap:24px}
+  .stat-val{font-size:24px}
+  .proj-feat{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
-<body class="antialiased selection:bg-primary selection:text-white">
+<body>
 
-    <div class="blob bg-primary w-96 h-96 rounded-full top-0 left-0 -translate-x-1/2 -translate-y-1/2"></div>
-    <div class="blob bg-secondary w-96 h-96 rounded-full bottom-0 right-0 translate-x-1/2 translate-y-1/2"></div>
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">TAK.dev</a>
+  <ul class="nav-links">
+    <li><a href="#skills">Stack</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#project">Project</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:tawfeeqpathan3@gmail.com" class="nav-cta">Hire Me →</a>
+</nav>
 
-    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold tracking-tighter">
-                Tawfeeq<span class="text-primary">.</span>
-            </a>
-            
-            <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-300">
-                <a href="#about" class="hover:text-primary transition-colors">About</a>
-                <a href="#skills" class="hover:text-primary transition-colors">Skills</a>
-                <a href="#experience" class="hover:text-primary transition-colors">Experience</a>
-                <a href="#projects" class="hover:text-primary transition-colors">Projects</a>
-                <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
-            </div>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="grid-lines"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="pulse-dot"></span>
+      Open to UAE / Dubai opportunities
+    </div>
+    <h1>Tawfeeq<br/><span class="line2">Ahmad Khan</span></h1>
+    <p class="hero-sub">Full Stack Developer &amp; Tech Lead · 3+ Years</p>
+    <div id="typed-wrap">
+      <span id="typed-role"></span><span class="cursor2"></span>
+    </div>
+    <p style="color:var(--muted2);max-width:520px;margin-bottom:36px;font-size:15px;line-height:1.75">
+      Building scalable MERN applications, cross-platform mobile apps, and AI-powered RAG pipelines. Gulf client experience with teams in Qatar &amp; Kuwait.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-glow primary">Get in Touch →</a>
+      <a href="#experience" class="btn-glow ghost">View Work</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-val">3<span class="stat-accent">+</span></div>
+        <div class="stat-label">Years experience</div>
+      </div>
+      <div>
+        <div class="stat-val">5<span class="stat-accent">+</span></div>
+        <div class="stat-label">Products shipped</div>
+      </div>
+      <div>
+        <div class="stat-val">3</div>
+        <div class="stat-label">Gulf client companies</div>
+      </div>
+      <div>
+        <div class="stat-val">2</div>
+        <div class="stat-label">Platforms (iOS + Android)</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <a href="https://drive.google.com/file/d/1lfCmGPZ_zqSwSWl3s2uIrvEaaU8KqJt-/view?usp=sharing" class="hidden md:inline-block px-5 py-2 bg-primary hover:bg-indigo-600 text-white rounded-full text-sm font-semibold transition-all transform hover:scale-105 shadow-lg shadow-indigo-500/30">
-                Hire Me
-            </a>
-            
-            <button class="md:hidden text-2xl text-slate-300">
-                <i class="fa-solid fa-bars"></i>
-            </button>
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marquee"></div>
+</div>
+
+<!-- SKILLS -->
+<div class="section" id="skills">
+  <div class="section-tag">Technical Stack</div>
+  <h2 class="section-h">What I <em>build</em> with</h2>
+  <div class="bento reveal">
+
+    <div class="bento-card bc-1">
+      <div class="bcat">⚡ Frontend</div>
+      <div class="btags">
+        <span class="btag hot">React.js</span>
+        <span class="btag hot">Next.js</span>
+        <span class="btag hot">React Native</span>
+        <span class="btag">TypeScript</span>
+        <span class="btag">Redux</span>
+        <span class="btag">Tailwind CSS</span>
+        <span class="btag">HTML5 / CSS3</span>
+      </div>
+    </div>
+
+    <div class="bento-card bc-2">
+      <div class="bcat">🔧 Backend</div>
+      <div class="btags">
+        <span class="btag hot">Node.js</span>
+        <span class="btag hot">Express.js</span>
+        <span class="btag">Python</span>
+        <span class="btag">FastAPI</span>
+        <span class="btag">MongoDB</span>
+        <span class="btag">MySQL</span>
+        <span class="btag">REST APIs</span>
+      </div>
+    </div>
+
+    <div class="bento-card bc-3" style="background:linear-gradient(145deg,rgba(0,212,255,.07),var(--card));border-color:rgba(0,212,255,.18)">
+      <div class="bcat" style="color:var(--purple)">🤖 AI & RAG</div>
+      <div style="margin-bottom:12px">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;color:var(--white);line-height:1">AI-First</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:4px">Integrations & Pipelines</div>
+      </div>
+      <div class="btags">
+        <span class="ai-pill">OpenAI API</span>
+        <span class="ai-pill">Claude API</span>
+        <span class="ai-pill">Gemini</span>
+        <span class="ai-pill">LangChain</span>
+        <span class="ai-pill">RAG</span>
+        <span class="ai-pill">N8N</span>
+      </div>
+    </div>
+
+    <div class="bento-card bc-4">
+      <div class="bcat">☁️ Cloud & DevOps</div>
+      <div class="btags">
+        <span class="btag hot">AWS</span>
+        <span class="btag hot">Docker</span>
+        <span class="btag">Firebase</span>
+        <span class="btag">Digital Ocean</span>
+        <span class="btag">Git / GitHub</span>
+        <span class="btag">cPanel</span>
+      </div>
+    </div>
+
+    <div class="bento-card bc-5" style="display:flex;flex-direction:column;justify-content:space-between">
+      <div>
+        <div class="bcat">📱 Mobile</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:38px;font-weight:700;color:var(--white);line-height:1;margin-bottom:8px">iOS &amp;<br/>Android</div>
+        <div style="font-size:13px;color:var(--muted2)">Cross-platform apps shipped to production on both stores</div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:20px">
+        <div style="flex:1;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center">
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--cyan)">3+</div>
+          <div style="font-size:11px;color:var(--muted)">Apps live</div>
         </div>
-    </nav>
-
-    <section class="min-h-screen flex items-center pt-20 relative">
-        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-            <div>
-                <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-indigo-300 uppercase bg-indigo-500/10 rounded-full border border-indigo-500/20">
-                    Full Stack Developer
-                </div>
-                <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
-                    Building <span class="gradient-text">Scalable</span> <br> Digital Solutions.
-                </h1>
-                <p class="text-lg text-slate-400 mb-8 max-w-lg leading-relaxed">
-                    I'm Tawfeeq Ahmad Khan, a developer with 4 years of experience building AI-powered features, automation tools, and LMS systems using React, Node.js, and AWS.
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#projects" class="px-7 py-3 bg-white text-darker font-bold rounded-full hover:bg-slate-200 transition-colors shadow-lg shadow-white/10">
-                        View Work
-                    </a>
-                    <a href="#contact" class="px-7 py-3 glass-card text-white font-bold rounded-full hover:bg-slate-800 transition-colors border border-slate-700">
-                        Contact Me
-                    </a>
-                </div>
-                
-                <div class="mt-10 flex gap-6 text-2xl text-slate-400">
-                    <a href="https://www.linkedin.com/in/tawfeeq-ahmad-khan-452b4b293/" target="_blank" class="hover:text-blue-500 transition-transform hover:-translate-y-1"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://github.com/Tawfeeqpathan" target="_blank" class="hover:text-white transition-transform hover:-translate-y-1"><i class="fa-brands fa-github"></i></a>
-                    <a href="mailto:tawfeeqpathan3@gmail.com" class="hover:text-red-400 transition-transform hover:-translate-y-1"><i class="fa-solid fa-envelope"></i></a>
-                </div>
-            </div>
-            
-            <div class="relative hidden md:block">
-                <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-20 blur-3xl rounded-full"></div>
-                <div class="relative glass-card rounded-2xl p-6 rotate-3 hover:rotate-0 transition-transform duration-500">
-                    <div class="flex items-center gap-2 mb-4 border-b border-slate-700 pb-4">
-                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                        <span class="ml-auto text-xs text-slate-500">DeveloperProfile.js</span>
-                    </div>
-                    <pre class="font-mono text-sm text-slate-300 overflow-x-auto"><code><span class="text-secondary">const</span> <span class="text-blue-400">developer</span> = {
-  name: <span class="text-green-400">'Tawfeeq Ahmad Khan'</span>,
-  role: <span class="text-green-400">'Full Stack Dev'</span>,
-  skills: [
-    <span class="text-green-400">'React.js'</span>, <span class="text-green-400">'Next.js'</span>,
-    <span class="text-green-400">'Node.js'</span>, <span class="text-green-400">'AWS'</span>
-  ],
-  hardWorker: <span class="text-secondary">true</span>,
-  quickLearner: <span class="text-secondary">true</span>
-};</code></pre>
-                </div>
-            </div>
+        <div style="flex:1;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center">
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--purple)">2</div>
+          <div style="font-size:11px;color:var(--muted)">Platforms</div>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <section id="skills" class="py-20 relative">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-12 text-center"><span class="border-b-4 border-primary pb-2">Technical Arsenal</span></h2>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="glass-card rounded-xl p-8">
-                    <h3 class="text-xl font-bold mb-6 flex items-center gap-3">
-                        <i class="fa-solid fa-code text-secondary"></i> Frontend Development
-                    </h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="px-4 py-2 bg-slate-800/50 rounded-lg text-sm border border-slate-700">React.js</span>
-                        <span class="px-4 py-2 bg-slate-800/50 rounded-lg text-sm border border-slate-700">Next.js</span>
-                        <span class="px-4 py-2 bg-slate-800/50 rounded-lg text-sm border border-slate-700">Redux Toolkit</span>
-                        <span class="px-4 py-2 bg-slate-800/50 rounded-lg text-sm border border-slate-700">React Native</span>
-                        <span class="px-4 py-2 bg-slate-800/50 rounded-lg text-sm border border-slate-700">Tailwind CSS</span>
-                        <span class="px-4 py-2 bg-slate-800/50 rounded-lg text-sm border border-slate-700">HTML5/CSS3</span>
-                        <span class="px-4 py-2 bg-slate-800/50 rounded-lg text-sm border border-slate-700">JavaScript</span>
-                    </div>
-                </div>
+    <div class="bento-card bc-6">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-right:4px">Tools →</span>
+      <span class="btag">Jira</span>
+      <span class="btag">VS Code</span>
+      <span class="btag">Xcode</span>
+      <span class="btag">Android Studio</span>
+      <span class="btag">Cursor AI</span>
+      <span class="btag">Excel</span>
+      <span class="btag">Postman</span>
+    </div>
 
-                <div class="glass-card rounded-xl p-8">
-                    <h3 class="text-xl font-bold mb-6 flex items-center gap-3">
-                        <i class="fa-solid fa-server text-primary"></i> Backend & Infrastructure
-                    </h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="px-4 py-2 bg-slate-800/50 rounded-lg text-sm border border-slate-700">Node.js</span>
-                        <span class="px-4 py-2 bg-slate-800/50 rounded-lg text-sm border border-slate-700">Express.js</span>
-                        <span class="px-4 py-2 bg-slate-800/50 rounded-lg text-sm border border-slate-700">MongoDB</span>
-                        <span class="px-4 py-2 bg-slate-800/50 rounded-lg text-sm border border-slate-700">MySQL</span>
-                        <span class="px-4 py-2 bg-slate-800/50 rounded-lg text-sm border border-slate-700">FastAPI</span>
-                        <span class="px-4 py-2 bg-slate-800/50 rounded-lg text-sm border border-slate-700">AWS (S3, EC2, CloudFront)</span>
-                        <span class="px-4 py-2 bg-slate-800/50 rounded-lg text-sm border border-slate-700">Git/GitHub</span>
-                         <span class="px-4 py-2 bg-slate-800/50 rounded-lg text-sm border border-slate-700">Claude Code</span>
-                         <span class="px-4 py-2 bg-slate-800/50 rounded-lg text-sm border border-slate-700">Cursor Ai</span>
-                    </div>
-                </div>
-            </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="section" id="experience">
+  <div class="section-tag">Career</div>
+  <h2 class="section-h">Work <em>Experience</em></h2>
+  <div class="exp-timeline">
+
+    <div class="exp-entry reveal">
+      <div class="exp-dot"></div>
+      <div class="exp-card">
+        <div class="exp-head">
+          <div>
+            <div class="exp-role">Full Stack Developer · Tech Lead</div>
+            <div class="exp-co c">Student Diwan</div>
+            <div class="exp-loc">📍 Doha, Qatar (Remote)</div>
+          </div>
+          <div class="exp-period-badge">Jul 2024 – Present</div>
         </div>
-    </section>
-
-    <section id="experience" class="py-20 bg-slate-900/30">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-16 text-center">Professional Experience</h2>
-            
-            <div class="relative max-w-4xl mx-auto pl-8 timeline-line space-y-12">
-                
-                <div class="relative">
-                    <div class="absolute -left-[41px] top-0 w-6 h-6 rounded-full bg-primary border-4 border-darker"></div>
-                    <div class="glass-card p-6 rounded-xl hover:bg-slate-800/50 transition-colors">
-                        <div class="flex flex-col md:flex-row justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">Full Stack Developer | Tech Lead</h3>
-                            <span class="text-sm text-primary font-mono bg-indigo-500/10 px-2 py-1 rounded">Jul 2024 - Present</span>
-                        </div>
-                        <h4 class="text-lg text-slate-400 mb-4">Student Diwan • Doha, Qatar (Remote)</h4>
-                        <ul class="list-disc list-inside text-slate-300 space-y-2 text-sm">
-                            <li>Served as Tech Lead for a complete School LMS, building complex frontend and backend modules from scratch.</li>
-                            <li>Developed modern UI web portals for staff/admin and mobile apps (iOS & Android).</li>
-                            <li>Built an advanced School Finance System handling expenses, revenue, fees, and payroll.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="relative">
-                    <div class="absolute -left-[41px] top-0 w-6 h-6 rounded-full bg-secondary border-4 border-darker"></div>
-                    <div class="glass-card p-6 rounded-xl hover:bg-slate-800/50 transition-colors">
-                        <div class="flex flex-col md:flex-row justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">Full Stack Developer</h3>
-                            <span class="text-sm text-secondary font-mono bg-pink-500/10 px-2 py-1 rounded">Jun 2024 - Jul 2024</span>
-                        </div>
-                        <h4 class="text-lg text-slate-400 mb-4">Scaled IT • Srinagar, India</h4>
-                        <ul class="list-disc list-inside text-slate-300 space-y-2 text-sm">
-                            <li>Built client-focused web and mobile applications for a service-based company.</li>
-                            <li>Worked on projects like <i>www.sahibawears.com</i> <i>Sahiba</i> and <i>Ootoline </i> .</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="relative">
-                    <div class="absolute -left-[41px] top-0 w-6 h-6 rounded-full bg-slate-500 border-4 border-darker"></div>
-                    <div class="glass-card p-6 rounded-xl hover:bg-slate-800/50 transition-colors">
-                        <div class="flex flex-col md:flex-row justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">React Native Developer</h3>
-                            <span class="text-sm text-slate-400 font-mono bg-slate-500/10 px-2 py-1 rounded">jan 2023 - jun 2023</span>
-                        </div>
-                        <h4 class="text-lg text-slate-400 mb-4">MJ King • Mumbai, India (Remote)</h4>
-                        <ul class="list-disc list-inside text-slate-300 space-y-2 text-sm">
-                            <li>Developed a Super App offering shopping, gym memberships, and cab booking.</li>
-                            <li>Delivered smooth UI/UX for the shopping module using React Native.</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
+        <ul class="exp-list">
+          <li>Led end-to-end development of a complete School LMS — web portals for staff &amp; admin, iOS &amp; Android apps for students, improving engagement and accessibility.</li>
+          <li>Architected complex frontend and backend modules from scratch ensuring high performance, scalability, and smooth UX across the entire platform.</li>
+          <li>Built an advanced School Finance System managing expenses, revenue, fees, and payroll with a simplified UI that reduced manual work significantly.</li>
+          <li>Implemented a RAG-based Bank Reconciliation module that reads school bank statement PDFs, auto-matches transactions, and flags discrepancies.</li>
+        </ul>
+        <div class="rag-badge">✦ RAG Pipeline deployed in production</div>
+        <div class="exp-links2">
+          <a href="https://www.studentdiwan.com" target="_blank" class="elink">studentdiwan.com ↗</a>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <section class="py-20 container mx-auto px-6">
-        <div class="grid md:grid-cols-2 gap-8">
-            
-            <div>
-                <h2 class="text-2xl font-bold mb-8">Achievements</h2>
-                <div class="glass-card p-6 rounded-xl border border-yellow-500/30 bg-yellow-500/5">
-                    <div class="flex items-start gap-4">
-                        <div class="bg-yellow-500/20 p-3 rounded-lg text-yellow-500">
-                            <i class="fa-solid fa-trophy text-xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold">3rd Place - College Hackathon</h3>
-                            <p class="text-slate-400 text-sm mt-2 mb-4">Recognized for innovative problem solving and coding excellence.</p>
-                            <a href="https://drive.google.com/file/d/12Nk92waTe3mBFZjuJtlFDPTmssG2Qrcp/view?usp=drive_link" target="_blank" class="inline-flex items-center text-yellow-500 font-semibold text-sm hover:underline">
-                                View Certificate <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <h2 class="text-2xl font-bold mb-8">Education</h2>
-                <div class="space-y-4">
-                    <div class="glass-card p-5 rounded-xl">
-                        <h3 class="font-bold">Bachelor of Computer Applications</h3>
-                        <p class="text-slate-400 text-sm">GLA University • UP, India (Online)</p>
-                        <p class="text-xs text-primary mt-1">2023 - 2026</p>
-                    </div>
-                    <div class="glass-card p-5 rounded-xl">
-                        <h3 class="font-bold">10+2 (Maths, Eco, Stats)</h3>
-                        <p class="text-slate-400 text-sm">Govt. Boys Higher Secondary • Ganderbal</p>
-                        <p class="text-xs text-primary mt-1">2020 - 2023</p>
-                    </div>
-                </div>
-            </div>
-
+    <div class="exp-entry reveal reveal-d1">
+      <div class="exp-dot purple"></div>
+      <div class="exp-card">
+        <div class="exp-head">
+          <div>
+            <div class="exp-role">Full Stack Developer</div>
+            <div class="exp-co p">Scaled IT</div>
+            <div class="exp-loc">📍 Srinagar, India</div>
+          </div>
+          <div class="exp-period-badge">Jun 2023 – Jun 2024</div>
         </div>
-    </section>
-
-    <section id="contact" class="py-20 relative">
-        <div class="container mx-auto px-6 max-w-3xl text-center">
-            <div class="glass-card rounded-2xl p-10 md:p-16 border border-primary/30">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to collaborate?</h2>
-                <p class="text-slate-400 mb-8 text-lg">
-                    I'm currently open to full-time opportunities. If you are looking for a developer who delivers high-quality solutions, let's talk.
-                </p>
-                <div class="flex flex-col md:flex-row justify-center gap-4">
-                    <a href="mailto:tawfeeqpathan3@gmail.com" class="px-8 py-3 bg-primary text-white rounded-full font-bold hover:bg-indigo-600 transition-all shadow-lg shadow-indigo-500/25">
-                        <i class="fa-solid fa-envelope mr-2"></i> Send Email
-                    </a>
-                    <a href="https://www.linkedin.com/in/tawfeeq-ahmad-khan-452b4b293/" target="_blank" class="px-8 py-3 bg-slate-800 text-white rounded-full font-bold hover:bg-slate-700 transition-all border border-slate-600">
-                        <i class="fa-brands fa-linkedin mr-2"></i> LinkedIn
-                    </a>
-                </div>
-                <div class="mt-8 text-slate-500 text-sm">
-                    <p><i class="fa-solid fa-phone mr-2"></i> +91-6006328925</p>
-                </div>
-            </div>
+        <ul class="exp-list">
+          <li>Delivered 5+ client-focused web and mobile applications, improving project turnaround time and boosting client satisfaction across GCC markets.</li>
+          <li>Built production-grade e-commerce platforms for fashion and retail brands serving Qatar, Kuwait, and UK markets.</li>
+        </ul>
+        <div class="exp-links2">
+          <a href="https://www.sahibawears.com" target="_blank" class="elink">sahibawears.com ↗</a>
+          <a href="https://www.kingdomcollection.uk" target="_blank" class="elink">kingdomcollection.uk ↗</a>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <footer class="py-6 border-t border-slate-800 text-center text-slate-500 text-sm">
-        <p>&copy; 2025 Tawfeeq Ahmad Khan. All rights reserved.</p>
-    </footer>
+    <div class="exp-entry reveal reveal-d2">
+      <div class="exp-dot green"></div>
+      <div class="exp-card">
+        <div class="exp-head">
+          <div>
+            <div class="exp-role">React Native Developer</div>
+            <div class="exp-co g">MJ King</div>
+            <div class="exp-loc">📍 Mumbai, India (Remote)</div>
+          </div>
+          <div class="exp-period-badge">Jan 2023 – Jun 2023</div>
+        </div>
+        <ul class="exp-list">
+          <li>Developed and optimised a Super App offering shopping, gym memberships, cab booking, and multiple services in a single iOS &amp; Android application.</li>
+          <li>Improved MJ King's frontend UI/UX performance and responsiveness, delivering a smoother user experience across both platforms.</li>
+        </ul>
+      </div>
+    </div>
 
+  </div>
+</div>
+
+<!-- PROJECT -->
+<div class="section" id="project">
+  <div class="section-tag">Featured Project</div>
+  <h2 class="section-h">AI-Powered <em>RAG Engine</em></h2>
+  <div class="project-hero reveal">
+    <div class="proj-label">✦ RAG · Vector Search · AI</div>
+    <div class="proj-title">Travel Quotation Intelligence</div>
+    <p class="proj-desc">
+      Built a RAG-based travel recommendation engine using embeddings and a vector database to store and retrieve tour quotations. Users find the best trip through natural language queries — no manual package comparison needed. The AI scores each quotation on price-value, completeness, hidden costs, and agency reliability.
+    </p>
+    <div class="proj-stack">
+      <span class="pstack-tag">RAG Pipeline</span>
+      <span class="pstack-tag">Vector DB</span>
+      <span class="pstack-tag">Text Embeddings</span>
+      <span class="pstack-tag">OpenAI API</span>
+      <span class="pstack-tag">LangChain</span>
+      <span class="pstack-tag">Python</span>
+      <span class="pstack-tag">FastAPI</span>
+    </div>
+    <a href="https://valuablechoice.in" target="_blank" class="btn-glow ghost" style="font-size:13px">Visit valuablechoice.in ↗</a>
+    <div class="proj-feat">
+      <div class="pf">
+        <div class="pf-num">AI</div>
+        <div class="pf-label">Natural language trip search</div>
+      </div>
+      <div class="pf">
+        <div class="pf-num" style="color:var(--purple)">RAG</div>
+        <div class="pf-label">Retrieval-augmented comparison</div>
+      </div>
+      <div class="pf">
+        <div class="pf-num" style="color:var(--green)">Live</div>
+        <div class="pf-label">Deployed at valuablechoice.in</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="section" id="contact">
+  <div class="contact-wrap">
+    <div class="reveal">
+      <div class="section-tag">Contact</div>
+      <div class="contact-h">Let's build<br/><span>something</span><br/>great.</div>
+      <p class="contact-note">Open to full-time roles in UAE / Dubai. Gulf client experience from day one. Visa sponsorship available — let's talk.</p>
+      <div class="avail-badge"><span class="avail-dot"></span> Available for opportunities</div>
+    </div>
+    <div class="contact-cards reveal reveal-d1">
+      <a href="mailto:tawfeeqpathan3@gmail.com" class="ccard">
+        <div class="ccard-icon">✉</div>
+        <div>
+          <div class="ccard-lbl">Email</div>
+          <div class="ccard-val">tawfeeqpathan3@gmail.com</div>
+        </div>
+      </a>
+      <a href="tel:+916006328925" class="ccard">
+        <div class="ccard-icon">☏</div>
+        <div>
+          <div class="ccard-lbl">Phone</div>
+          <div class="ccard-val">+91 6006 328 925</div>
+        </div>
+      </a>
+      <a href="https://linkedin.com" target="_blank" class="ccard">
+        <div class="ccard-icon" style="font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700">in</div>
+        <div>
+          <div class="ccard-lbl">LinkedIn</div>
+          <div class="ccard-val">linkedin.com/in/tawfeeq</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-left">© 2026 Tawfeeq Ahmad Khan · UAE-Ready · Full Stack Developer</div>
+  <div class="foot-right">
+    <a href="#hero">Top</a>
+    <a href="#skills">Stack</a>
+    <a href="#experience">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+// Typewriter
+const roles=['Full Stack Developer','Tech Lead','AI / RAG Engineer','React Native Dev','MERN Stack Expert'];
+let ri=0,ci=0,del=false;
+const el=document.getElementById('typed-role');
+function type(){
+  const cur=roles[ri];
+  if(!del){el.textContent=cur.slice(0,++ci);if(ci===cur.length){del=true;setTimeout(type,2000);return}}
+  else{el.textContent=cur.slice(0,--ci);if(ci===0){del=false;ri=(ri+1)%roles.length}}
+  setTimeout(type,del?45:70);
+}
+type();
+
+// Marquee
+const items=['React.js','Node.js','MongoDB','Python','AWS','Docker','FastAPI','RAG Pipelines','LangChain','TypeScript','Next.js','Firebase','Tailwind CSS','OpenAI API','Claude API','React Native','Express.js','MySQL','Redux'];
+const track=document.getElementById('marquee');
+const html=items.map(i=>`<span class="marquee-item"><span>${i}</span><span class="marquee-dot"></span></span>`).join('');
+track.innerHTML=html+html;
+
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>
